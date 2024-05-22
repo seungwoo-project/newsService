@@ -1,19 +1,18 @@
+// NewsServiceImpl 구현체
 package hello.newsService.service;
 
 import hello.newsService.entity.News;
 import hello.newsService.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
-@Transactional
-public class NewsServiceImpl implements NewsService{
+public class NewsServiceImpl implements NewsService {
 
-
-    private NewsRepository newsRepository;
+    private final NewsRepository newsRepository;
 
     @Autowired
     public NewsServiceImpl(NewsRepository newsRepository) {
@@ -21,22 +20,27 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public News addNews(News news) {
-        return null;
-    }
-
-    @Override
     public List<News> getAllNews() {
-        return null;
+        return newsRepository.getAll();
     }
 
     @Override
     public News getNewsById(int id) {
-        return null;
+        return newsRepository.getNews(id);
+    }
+
+    @Override
+    public int addNews(News news) {
+        return newsRepository.addNews(news);
     }
 
     @Override
     public void deleteNews(int id) {
+        newsRepository.delNews(id);
+    }
 
+    @Override
+    public byte[] getImageById(int id) {
+        return newsRepository.getImageById(id);
     }
 }

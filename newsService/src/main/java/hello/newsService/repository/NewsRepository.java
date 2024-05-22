@@ -49,7 +49,7 @@ public class NewsRepository {
 
     // 데이터베이스 조회
     // Q2. 여기서 throws SQLExcption 붙여준 이유는?
-    public List<News> getAll() throws SQLException {
+    public List<News> getAll()  {
         open();
         List<News> newsList = new ArrayList<>();
         try {
@@ -76,7 +76,7 @@ public class NewsRepository {
 
 
     // Q6. 여기서 throws 붙여준이유는?
-    public News getNews(int id) throws SQLException {
+    public News getNews(int id) {
         News news = null;
         open();
 
