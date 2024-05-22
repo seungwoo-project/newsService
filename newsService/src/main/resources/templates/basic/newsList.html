@@ -20,17 +20,17 @@
     <hr>
     <ul class="list-group">
         <li th:each="news, status : ${newslist}" class="list-group-item list-group-item-action d-flex justify-content-between align-tiems-center">
-            <a th:href="@{/NewsController.nhn(action='getNews', id=${news.id})}" class="text-decoration-none">
+            <a th:href="@{/{newsId}(newsId=${news.id})}" class="text-decoration-none">
                 [[${status.count}]] [[${news.title}]], [[${news.date}]]
             </a>
-            <a th:href="@{/NewsController.nhn(action='delNews', id=${news.id})}">
+            <a th:href="@{/del}">
                 <span class="badge bg-secondary"> &times; </span>
             </a>
         </li>
     </ul>
     <hr>
 
-    <form method="post" th:action="@{/NewsController.nhn(action='getAll')}">
+    <form method="post" th:action>
         <button class="btn btn-outline-info mb-3" type="submit">새로고침</button>
     </form>
 
