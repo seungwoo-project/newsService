@@ -41,7 +41,6 @@ public class NewsController {
     }
 
     @GetMapping("/del")
-    @ResponseBody
     public String 뉴스삭제() {
 
         return "ok";

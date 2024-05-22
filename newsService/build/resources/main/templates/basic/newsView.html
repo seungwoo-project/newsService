@@ -16,13 +16,13 @@
 
 <body>
 <div class="container w-75 mt-5 mx-auto">
-    <h2>${news.title}</h2>
+    <h2 th:text="${news.title}">제목</h2>
     <hr>
     <div class="card w-75 mx-auto">
         <img class="card-img-top" src="NewsController.nhn?uid=${news.id}">
         <div class="card-body">
-            <h4 class="card-title">Date : ${news.date}</h4>
-            <p class="card-text">Content: ${news.content}</p>
+            <h4 class="card-title" th:text="${news.date}">Date : 날짜</h4>
+            <p class="card-text" th:text="${news.content}" >Content: 내용</p>
         </div>
     </div>
     <hr>
