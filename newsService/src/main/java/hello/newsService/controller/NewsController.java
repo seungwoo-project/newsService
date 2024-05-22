@@ -40,11 +40,13 @@ public class NewsController {
         return "basic/newsView";
     }
 
-    @GetMapping("/del")
-    public String 뉴스삭제() {
-
-        return "ok";
+    @GetMapping("/{newsId}/del")
+    public String 뉴스삭제(@PathVariable int newsId) {
+        newsService.deleteNews(newsId);
+        return "redirect:/";
     }
+
+    //  뉴스 등록, newsList 새로고침 구현
 
 
 }

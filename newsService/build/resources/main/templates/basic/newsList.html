@@ -23,7 +23,7 @@
             <a th:href="@{/{newsId}(newsId=${news.id})}" class="text-decoration-none">
                 [[${status.count}]] [[${news.title}]], [[${news.date}]]
             </a>
-            <a th:href="@{/del}">
+            <a th:href="@{/{newsId}/del(newsId=${news.id})}">
                 <span class="badge bg-secondary"> &times; </span>
             </a>
         </li>
