@@ -20,7 +20,7 @@
     <hr>
     <ul class="list-group">
         <li th:each="news, status : ${newslist}" class="list-group-item list-group-item-action d-flex justify-content-between align-tiems-center">
-            <a th:href="@{/{newsId}(newsId=${news.id})}" class="text-decoration-none" th:text="|[${status.count}] [${news.title}] [${news.date}]|">
+            <a th:href="@{/{newsId}(newsId=${news.id})}" class="text-decoration-none" th:text="|[${status.count}] ${news.title} ${news.date}|">
 
             </a>
             <a th:href="@{/{newsId}/del(newsId=${news.id})}">
@@ -47,7 +47,7 @@
     <div class="collapse" id="addForm">
         <div class="card card-body">
 
-            <form method="post" th:action="@{/jwbook/NewsController.nhn(action='addNews')}"
+            <form method="post" th:action="@{/add}"
                   enctype="multipart/form-data">
                 <label class="form-label">제목</label>
                 <input type="text" name="title" class="form-control">

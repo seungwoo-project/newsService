@@ -19,7 +19,7 @@
     <h2 th:text="${news.title}">제목</h2>
     <hr>
     <div class="card w-75 mx-auto">
-        <img class="card-img-top" src="NewsController.nhn?uid=${news.id}">
+        <img class="card-img-top" th:src="@{/images/{newsId}(newsId=${news.id})}">
         <div class="card-body">
             <h4 class="card-title" th:text="${news.date}">Date : 날짜</h4>
             <p class="card-text" th:text="${news.content}" >Content: 내용</p>

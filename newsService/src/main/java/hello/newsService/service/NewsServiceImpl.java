@@ -31,7 +31,11 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public int addNews(News news) {
-        return newsRepository.addNews(news);
+        try {
+            return newsRepository.addNews(news);
+        } catch (Exception e) {
+            throw new RuntimeException("뉴스가 정상적으로 등록되지 않았습니다.", e);
+        }
     }
 
     @Override

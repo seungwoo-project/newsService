@@ -38,7 +38,7 @@ public class NewsRepository {
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, n.getTitle());
-            pstmt.setBlob(2, n.getImage());
+            pstmt.setBytes(2, n.getImage());
             pstmt.setString(3, n.getContent());
             result = pstmt.executeUpdate();
         }catch (SQLException e) { e.printStackTrace(); }
@@ -64,7 +64,7 @@ public class NewsRepository {
                     n.setContent(rs.getString("content")); // Q5. ppt 12p 에서는 빠져있음
                     n.setTitle(rs.getString("title"));
                     n.setDate(rs.getString("cdate"));
-                    n.setImage(rs.getBlob("image"));
+                    n.setImage(rs.getBytes("image"));
                     newsList.add(n);
                 }
             }
@@ -95,7 +95,7 @@ public class NewsRepository {
                     news = new News();
                     news.setId(rs.getInt("id"));
                     news.setTitle(rs.getString("title"));
-                    news.setImage(rs.getBlob("image"));
+                    news.setImage(rs.getBytes("image"));
                     news.setDate(rs.getString("cdate"));
                     news.setContent(rs.getString("content"));
                 }
@@ -140,9 +140,7 @@ public class NewsRepository {
             pstmt.setInt(1, id); // 첫 번째 파라미터 설정
             rs = pstmt.executeQuery(); // 쿼리 실행 및 결과 처리
             if (rs.next()) { // 결과가 존재하면
-                Blob imageBlob = rs.getBlob("image"); // Blob 객체 가져오기
-                imageBytes = imageBlob.getBytes(1, (int) imageBlob.length()); // Blob 데이터를 바이트 배열로 변환
-                imageBlob.free(); // Blob 객체 해제
+                imageBytes = rs.getBytes("image");
             }
         } catch (SQLException e) {
             e.printStackTrace();

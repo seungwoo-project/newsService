@@ -14,7 +14,7 @@ public class News {
     private int id;
     private String title;
 
-    private Blob image;
+    private byte[] image;
 
     private String date;
 
