@@ -2,11 +2,11 @@
 package hello.newsService.service;
 
 import hello.newsService.entity.News;
+import hello.newsService.repository.NewsJdbcRepository;
 import hello.newsService.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -30,11 +30,11 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public int addNews(News news) {
+    public void addNews(News news) {
         try {
-            return newsRepository.addNews(news);
-        } catch (Exception e) {
-            throw new RuntimeException("뉴스가 정상적으로 등록되지 않았습니다.", e);
+            newsRepository.addNews(news);
+        } catch (RuntimeException  e) {
+            throw new RuntimeException("뉴스 등록 중 오류가 발생했습니다.", e);
         }
     }
 

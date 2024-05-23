@@ -9,7 +9,7 @@ import java.util.List;
 public interface NewsService {
     List<News> getAllNews();
     News getNewsById(int id);
-    int addNews(News news);
+    void addNews(News news);
     void deleteNews(int id);
     byte[] getImageById(int id);
 }

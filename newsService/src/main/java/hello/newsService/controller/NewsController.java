@@ -53,14 +53,21 @@ public class NewsController {
     @PostMapping("/add")
     public String addNews(@ModelAttribute News news, @RequestParam("imageFile") MultipartFile imageFile, Model model) {
         try {
-            byte[] imageBytes = imageFile.getBytes();
-            news.setImage(imageBytes);
+            if (!imageFile.isEmpty()) {
+                byte[] imageBytes = imageFile.getBytes();
+                news.setImage(imageBytes);
+            }
             newsService.addNews(news);
-        } catch (Exception e) {
+            return "redirect:/";
+        } catch (IOException e) {
+            model.addAttribute("news", news);
+            model.addAttribute("error", "이미지 파일 처리 중 오류가 발생했습니다.");
+            return "basic/newsList";
+        } catch (RuntimeException e) {
+            model.addAttribute("news", news);
             model.addAttribute("error", e.getMessage());
             return "basic/newsList";
         }
-        return "redirect:/";
     }
 
     // 이미지 처리
